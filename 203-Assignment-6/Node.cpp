@@ -18,7 +18,10 @@ Node::Node(std::string myName)
 // address and previous node pointer to prevNode's address.
 Node::Node(std::string myName, Node& nextNode , Node& prevNode)
 {
-	setName(myName);
+	if (setName(myName) == false)
+	{
+		setName("default");
+	}
 	mNext = &nextNode;
 	mPrev = &prevNode;
 }
@@ -28,7 +31,7 @@ Node::Node(std::string myName, Node& nextNode , Node& prevNode)
 bool Node::setName(std::string const &nameStr)
 {
 	bool status;
-	if (!nameStr.empty() && nameStr.length() > 3)
+	if (!nameStr.empty() && nameStr.length() > 2)
 	{
 		mName = nameStr;
 		status = true;
@@ -37,13 +40,14 @@ bool Node::setName(std::string const &nameStr)
 	else if (nameStr.empty())
 	{ 
 		std::cout << "*Error* Name can not be left empty" << std::endl;
-		status = false;
+		 status = false;
 	}
 	else
 	{
 		std::cout << "*Error* Name must be greater than 2 characters" << std::endl;
 		status = false;
 	}
+	
 	return status;
 }
 

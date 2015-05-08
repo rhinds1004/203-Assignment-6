@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "List.h"
 using namespace std;
 int main()
 {
@@ -20,7 +21,8 @@ int main()
 	cout << n4.getName() << endl;
 	cout << n4.getNextNode() << endl;
 	cout << n4.getPrevNode() << endl;
-
+	string str1 = "wee";
+	List alist(str1);
 	cin.get();
 	return 0;
 }
