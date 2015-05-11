@@ -23,6 +23,6 @@ int main()
 	cout << n4.getPrevNode() << endl;
 	string str1 = "wee";
 	List alist(str1);
-	cin.get();
+	//cin.get();
 	return 0;
 }

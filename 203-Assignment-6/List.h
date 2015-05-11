@@ -6,12 +6,14 @@ class List
 private:
 	Node* mHeadNode;
 	Node* mRearNode;
+	Node* mNewNode;
+	void setNewNode(Node *);
 public:
 	List();
-	List(std::string&);
+	List(std::string );
 
-	void setHeadNode(Node&);
-	void setRearNode();
+	void setHeadNode(Node *);
+	void setRearNode(Node *);
 	~List();
 };
 
