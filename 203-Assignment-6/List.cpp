@@ -15,6 +15,7 @@ List::List(std::string myName)
 	setRearNode(newNode);
 	setNewNode(newNode);
 }
+
 //********		Mutators	********
 //sets pointer to the last node in the list
 void List::setRearNode(Node* aNode)
@@ -119,6 +120,7 @@ bool List::removeLast()
 	}
 	return status;
 }
+//returns the amount of nodes within a list.
 int List::sizeMe()
 {
 	int size = 0;
@@ -130,6 +132,7 @@ int List::sizeMe()
 	}
 	return size;
 }
+//checks to see if the list is empty.
 bool List::isEmpty()
 {
 	bool status = true;
