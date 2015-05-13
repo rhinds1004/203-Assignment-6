@@ -22,8 +22,8 @@ public:
 	bool addLast(Node* );
 	bool removeFirst();
 	bool removeLast();
-	int List::sizeMe()
-	bool List::isEmpty();
+	int sizeMe();
+	bool isEmpty();
 	// Destructors
 	~List();
 };

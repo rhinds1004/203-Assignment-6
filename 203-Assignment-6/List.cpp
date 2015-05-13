@@ -122,6 +122,12 @@ bool List::removeLast()
 int List::sizeMe()
 {
 	int size = 0;
+	Node* tempNode = mHeadNode;
+	while (tempNode != NULL)
+	{
+		size++;
+		tempNode = tempNode->getNextNode();
+	}
 	return size;
 }
 bool List::isEmpty()

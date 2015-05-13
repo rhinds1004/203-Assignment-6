@@ -36,11 +36,11 @@ int main()
 	{
 		cout << "I have stuff" << endl;
 	}
-
+	cout << "my size is: " << alist.sizeMe() << endl;
 	alist.removeFirst();
 	alist.removeLast();
 	alist.removeFirst();
-	
+	cout << "my size is: " << alist.sizeMe() << endl;
 	cin.get();
 	return 0;
 }
