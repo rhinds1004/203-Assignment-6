@@ -53,14 +53,14 @@ bool Node::setName(std::string const &nameStr)
 }
 
 //Sets a Node Pointer to the next Node in the list.
-void Node::setNextNode(Node& inputPtr) 
+void Node::setNextNode(Node* inputPtr) 
 {
-	mNext = &inputPtr;
+	mNext = inputPtr;
 }
 //Sets a Node Pointer to the previous Node in the list.
-void Node::setPrevNode(Node&  inputPtr) 
+void Node::setPrevNode(Node*  inputPtr) 
 {
-	mPrev = &inputPtr;
+	mPrev = inputPtr;
 }
 
 // ********		Accessors	********

@@ -15,12 +15,13 @@ public:
 	Node(std::string myName, Node&, Node&);
 	// mutators
 	bool setName(std::string const &);
-	void Node::setNextNode(Node& );
-	void Node::setPrevNode(Node& );
+	void Node::setNextNode(Node* );
+	void Node::setPrevNode(Node* );
 	// Accessors
 	std::string getName();
 	Node* getNextNode() const;
 	Node* getPrevNode() const;
+	// Destructors
 	~Node();
 };
 

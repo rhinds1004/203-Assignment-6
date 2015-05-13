@@ -8,12 +8,23 @@ private:
 	Node* mRearNode;
 	Node* mNewNode;
 	void setNewNode(Node *);
+protected:
+	
 public:
+	// constructors
 	List();
 	List(std::string );
-
+	// mutators
 	void setHeadNode(Node *);
 	void setRearNode(Node *);
+	bool listStarterNode(Node* );
+	bool addFirst(Node*);
+	bool addLast(Node* );
+	bool removeFirst();
+	bool removeLast();
+	int List::sizeMe()
+	bool List::isEmpty();
+	// Destructors
 	~List();
 };
 
