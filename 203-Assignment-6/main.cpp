@@ -28,10 +28,9 @@ int main()
 	list2.addFirst(&start);*/
 	
 	//list2.setHeadNode(&n1);
-	Node test("Test");
-	Node test2("Test 2");
-	alist.addFirst(&test);
-	alist.addLast(&test2);
+	
+	alist.addFirst("Test");
+	alist.addLast("Test2");
 	if (alist.isEmpty() != true)
 	{
 		cout << "I have stuff" << endl;

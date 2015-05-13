@@ -5,7 +5,6 @@ List::List()
 {
 	mHeadNode = NULL;
 	mRearNode = NULL;
-	mNewNode = NULL;
 }
 
 List::List(std::string myName)
@@ -13,7 +12,6 @@ List::List(std::string myName)
 	Node * newNode = new Node(myName);
 	setHeadNode(newNode);
 	setRearNode(newNode);
-	setNewNode(newNode);
 }
 
 //********		Mutators	********
@@ -39,9 +37,10 @@ bool List::listStarterNode(Node* aNode)
 	return status;
 }
 //adds node to the beginning of list
-bool List::addFirst(Node* aNode)
+bool List::addFirst( const std::string &myStr)
 {
 	bool status = false;
+	Node * aNode = new Node(myStr);
 	if (mHeadNode == NULL)
 	{
 		return listStarterNode(aNode);
@@ -57,9 +56,10 @@ bool List::addFirst(Node* aNode)
 	return status;
 }
 //adds node to the end of list
-bool List::addLast(Node* aNode)
+bool List::addLast(const std::string &myStr)
 {
 	bool status = false;
+	Node * aNode = new Node(myStr);
 	if (mHeadNode == NULL)
 	{
 		return listStarterNode(aNode);
@@ -84,13 +84,10 @@ bool List::removeFirst()
 		if (tempNode != NULL)
 		{
 			tempNode->setPrevNode(mHeadNode->getPrevNode()); //sets tempNode's rear to NULL;
-			if (mHeadNode == mNewNode)						  //ensures dynamically allocated Node gets deallocated.
-			{
-				delete mHeadNode;
-				mHeadNode = NULL;
-				mRearNode = NULL;
-				mNewNode = NULL;
-			}
+			delete mHeadNode;  //ensures dynamically allocated Node gets deallocated.
+			mHeadNode = NULL;
+			mRearNode = NULL;
+						
 		}
 		mHeadNode = tempNode;
 		status = true;
@@ -107,13 +104,10 @@ bool List::removeLast()
 		if (tempNode != NULL)
 		{
 			tempNode->setNextNode(mRearNode->getNextNode()); //sets tempNode's next to NULL;
-			if (mHeadNode == mNewNode)						//ensures dynamically allocated Node gets deallocated.
-			{
 				delete mHeadNode;
 				mHeadNode = NULL;
 				mRearNode = NULL;
-				mNewNode = NULL;
-			}
+				
 		}
 		mRearNode = tempNode;
 		status = true;
@@ -140,17 +134,17 @@ bool List::isEmpty()
 		return status ;
 	return status = false;
 }
-//Records the address of the Node dynamically allocated in the constructor.
-//to allow deleting.
-void List::setNewNode(Node* aNode)
-{
-	mNewNode = aNode;
-}
+
 //Function to check if dynamically allocated Node needs to be deleted.?
 List::~List()
 {
-	if (mNewNode != NULL)
+	Node* tempNode = mHeadNode->getNextNode();
+	while (mHeadNode != NULL)
 	{
-		delete mNewNode;
+		delete mHeadNode;
+		mHeadNode = NULL;
+		mHeadNode = tempNode;
+		tempNode = mHeadNode->getNextNode();
+		
 	}
 }
