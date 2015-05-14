@@ -28,19 +28,22 @@ int main()
 	list2.addFirst(&start);*/
 	
 	//list2.setHeadNode(&n1);
-	Node test("Test");
-	Node test2("Test 2");
-	alist.addFirst(&test);
-	alist.addLast(&test2);
+	//Node test("Test");
+	//Node test2("Test 2");
+	alist.addFirst("test");
 	if (alist.isEmpty() != true)
 	{
 		cout << "I have stuff" << endl;
 	}
 	cout << "my size is: " << alist.sizeMe() << endl;
-	alist.removeFirst();
 	alist.removeLast();
+	cout << "this was the removed string:" << alist.removeFirst() << endl;
 	alist.removeFirst();
+	alist.removeFirst();
+	cout << "this was the removed string:" << alist.removeLast() << endl;;
+	alist.removeLast();
+
 	cout << "my size is: " << alist.sizeMe() << endl;
-	cin.get();
+	//cin.get();
 	return 0;
 }

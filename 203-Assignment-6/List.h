@@ -6,8 +6,6 @@ class List
 private:
 	Node* mHeadNode;
 	Node* mRearNode;
-	Node* mNewNode;
-	void setNewNode(Node *);
 protected:
 	
 public:
@@ -18,10 +16,10 @@ public:
 	void setHeadNode(Node *);
 	void setRearNode(Node *);
 	bool listStarterNode(Node* );
-	bool addFirst(Node*);
-	bool addLast(Node* );
-	bool removeFirst();
-	bool removeLast();
+	bool addFirst(const std::string &myStr);
+	bool addLast(const std::string &myStr);
+	std::string removeFirst();
+	std::string removeLast();
 	int sizeMe();
 	bool isEmpty();
 	// Destructors

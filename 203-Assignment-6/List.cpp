@@ -5,7 +5,7 @@ List::List()
 {
 	mHeadNode = NULL;
 	mRearNode = NULL;
-	mNewNode = NULL;
+	
 }
 
 List::List(std::string myName)
@@ -13,7 +13,7 @@ List::List(std::string myName)
 	Node * newNode = new Node(myName);
 	setHeadNode(newNode);
 	setRearNode(newNode);
-	setNewNode(newNode);
+	
 }
 
 //********		Mutators	********
@@ -27,6 +27,7 @@ void List::setHeadNode(Node* aNode)
 {
 	mHeadNode = aNode;
 }
+
 //adds a node in an empty list
 bool List::listStarterNode(Node* aNode)
 {
@@ -39,9 +40,10 @@ bool List::listStarterNode(Node* aNode)
 	return status;
 }
 //adds node to the beginning of list
-bool List::addFirst(Node* aNode)
+bool List::addFirst(const std::string &myStr)
 {
 	bool status = false;
+	Node * aNode = new Node(myStr);
 	if (mHeadNode == NULL)
 	{
 		return listStarterNode(aNode);
@@ -57,9 +59,10 @@ bool List::addFirst(Node* aNode)
 	return status;
 }
 //adds node to the end of list
-bool List::addLast(Node* aNode)
+bool List::addLast(const std::string &myStr)
 {
 	bool status = false;
+	Node * aNode = new Node(myStr);
 	if (mHeadNode == NULL)
 	{
 		return listStarterNode(aNode);
@@ -74,51 +77,61 @@ bool List::addLast(Node* aNode)
 	return status;
 }
 //removal of first node in the list
-bool List::removeFirst()
+std::string List::removeFirst()
 {
-	bool status = false;
+	
+	std::string retStr;
+	if (mHeadNode == mRearNode)
+	{
+		if (mHeadNode != NULL && mRearNode != NULL)
+		{
+			retStr = mHeadNode->getName();
+			delete mHeadNode;
+			mHeadNode = NULL;
+			mRearNode = NULL;
+		}
+	}
 	if (mHeadNode != NULL)
 	{
-		
 		Node * tempNode = mHeadNode->getNextNode();
 		if (tempNode != NULL)
 		{
 			tempNode->setPrevNode(mHeadNode->getPrevNode()); //sets tempNode's rear to NULL;
-			if (mHeadNode == mNewNode)						  //ensures dynamically allocated Node gets deallocated.
-			{
-				delete mHeadNode;
-				mHeadNode = NULL;
-				mRearNode = NULL;
-				mNewNode = NULL;
-			}
+			retStr = mHeadNode->getName();
+			delete mHeadNode;
 		}
 		mHeadNode = tempNode;
-		status = true;
+		
 	}
-	return status;
+	return retStr;
 }
 //removal of last node in the list
-bool List::removeLast()
+std::string List::removeLast()
 {
-	bool status = false;
+	std::string retStr;
+	if (mHeadNode == mRearNode)
+	{
+		if (mHeadNode != NULL && mRearNode != NULL)
+		{
+			retStr = mHeadNode->getName();
+			delete mHeadNode;
+			mHeadNode = NULL;
+			mRearNode = NULL;
+		}
+
+	}
 	if (mHeadNode != NULL)
 	{
 		Node * tempNode = mRearNode->getPrevNode();
 		if (tempNode != NULL)
 		{
 			tempNode->setNextNode(mRearNode->getNextNode()); //sets tempNode's next to NULL;
-			if (mHeadNode == mNewNode)						//ensures dynamically allocated Node gets deallocated.
-			{
-				delete mHeadNode;
-				mHeadNode = NULL;
-				mRearNode = NULL;
-				mNewNode = NULL;
-			}
+			retStr = mHeadNode->getName();
+			delete mRearNode;		
 		}
 		mRearNode = tempNode;
-		status = true;
 	}
-	return status;
+	return retStr;
 }
 //returns the amount of nodes within a list.
 int List::sizeMe()
@@ -140,17 +153,26 @@ bool List::isEmpty()
 		return status ;
 	return status = false;
 }
-//Records the address of the Node dynamically allocated in the constructor.
-//to allow deleting.
-void List::setNewNode(Node* aNode)
-{
-	mNewNode = aNode;
-}
-//Function to check if dynamically allocated Node needs to be deleted.?
+
+//check if dynamically allocated Node needs to be deleted.
 List::~List()
 {
-	if (mNewNode != NULL)
+	if (mHeadNode != NULL)
 	{
-		delete mNewNode;
+	
+		Node* tempNode = mHeadNode->getNextNode();
+		do
+		{
+			delete mHeadNode;
+			mHeadNode = NULL;
+			mHeadNode = tempNode;
+			if (mHeadNode != NULL)
+			{
+				tempNode = mHeadNode->getNextNode();
+			}
+			else
+				tempNode = NULL;
+		} while (tempNode != NULL);
 	}
+	mRearNode = NULL;
 }
