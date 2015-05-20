@@ -1,5 +1,5 @@
 #ifndef LIST_GO
-#define List_GO
+#define LIST_GO
 #include "Node.h"
 class List
 {
