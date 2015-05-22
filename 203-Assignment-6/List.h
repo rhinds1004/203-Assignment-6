@@ -5,8 +5,10 @@ class List;  //declaring it list here so the complier knows that it will exist w
 
 //overloaded operators
 std::ostream &operator << (std::ostream &, List &);
+
 class List
 {
+	
 private:
 	Node* mHeadNode;
 	Node* mRearNode;
@@ -26,6 +28,8 @@ public:
 	std::string removeLast();
 	int sizeMe();
 	bool isEmpty();
+	//tests node functions
+	void nodeTest();
 	virtual void printMe(std::ostream&, List &, const std::string&) const;
 	//friends
 	friend std::ostream &operator << (std::ostream&,  List & );
