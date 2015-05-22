@@ -1,6 +1,10 @@
 #ifndef LIST_GO
-#define List_GO
+#define LIST_GO
 #include "Node.h"
+class List;  //declaring it list here so the complier knows that it will exist when it sees the overloaded operator
+
+//overloaded operators
+std::ostream &operator << (std::ostream &, List &);
 class List
 {
 private:
@@ -22,6 +26,9 @@ public:
 	std::string removeLast();
 	int sizeMe();
 	bool isEmpty();
+	virtual void printMe(std::ostream&, List &, const std::string&) const;
+	//friends
+	friend std::ostream &operator << (std::ostream&,  List & );
 	// Destructors
 	~List();
 };

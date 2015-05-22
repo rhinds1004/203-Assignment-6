@@ -2,6 +2,7 @@
 #define NODE_GO
 #include <string>
 #include <iostream>
+#include <cstdlib>
 class Node
 {
 private:

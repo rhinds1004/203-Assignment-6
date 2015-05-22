@@ -1,3 +1,23 @@
+//=========================================================================================
+// Name : Robert Hinds
+// Date : 5/12/15
+// Class : TCES 203
+// Description : This program creates and uses several abstract data types through
+//	inheritance as well aggregation. The ADT’s used are nodes, lists, stacks,
+//	and queues. The Node class is the base class which contains two pointers
+//	to the next node and the previous node and a string for data. List is
+//	comprised of a node by aggregation as well as node pointers to the front
+//	and back of the list. Queue and Stack inherit list, meaning they ARE a
+// kind of list, and each are comprised of a limited measure of the
+// functionality of their base class List. Queue displays the classic
+//	functionality of a queue, allowing for enqueuing (adding to the back) and
+//	dequeuing (removing from the front). Stack also displays its classic
+//	characteristics of push (adding to the top of the stack) and pop
+//	(removing from the top of the stack). Throughout this program is
+//	implemented a plethora of additional pre-requisite functionality such as
+//	checking if a list is empty, determining the size of a list, overloaded
+//	operators and etc.
+//=========================================================================================
 #include "List.h"
 
 //********	 Constructors	********
@@ -152,6 +172,42 @@ bool List::isEmpty()
 	if (mHeadNode == NULL)
 		return status ;
 	return status = false;
+}
+void List::printMe(std::ostream& tempStrm, List &aList, const std::string& type) const
+{
+	//case 1: string is empty
+
+	if (aList.isEmpty())
+	{
+		tempStrm << "The "<< type <<" is empty.";
+		//return tempStrm;
+	}
+	//case 2: there is only one node in the list
+	else if (aList.mHeadNode == aList.mRearNode)
+	{
+		tempStrm << "Printing " << type << " by name:" << "NULL<--" << aList.mHeadNode->getName() << "-->NULL";
+		//return tempStrm;
+	}
+	//case 3: standard case, there is more than one node in the list
+	else
+	{
+		Node* temp = aList.mHeadNode;
+		tempStrm << "Printing "<< type << " by name:" << "NULL";
+		while (temp != NULL)
+		{
+			tempStrm << "<--" << temp->getName() << "-->";
+			temp = temp->getNextNode();
+		}
+		tempStrm << "NULL";
+	}
+	//return tempStrm;
+}
+//overloaded operators
+//overloads ostream cout to print a List object by displaying the nodes in the list in order by name
+std::ostream &operator << (std::ostream &tempStrm, List &aList)
+{
+	aList.printMe(tempStrm, aList, "list");
+	return tempStrm;
 }
 
 //check if dynamically allocated Node needs to be deleted.

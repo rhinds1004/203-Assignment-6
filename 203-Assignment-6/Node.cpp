@@ -33,7 +33,6 @@ bool Node::setName(std::string const &nameStr)
 	bool status;
 	if (!nameStr.empty() && nameStr.length() > 2)
 	{
-		//std::string name(nameStr);
 		mName = nameStr;
 		status = true;
 	}
